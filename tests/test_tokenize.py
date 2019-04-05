@@ -1,9 +1,13 @@
 from ie_nlp_utils import tokenize  # This will fail right away!
+import pytest
 
-def test_tokenize_returns_expected_list():
-    sentence = "This is a sentence"
-    expected_tokens = ["This", "is", "a", "sentence"]
+@pytest.mark.parametrize("input, lower, expected", [
+	("This is a sentence.", True, ["this", "is", "a", "sentence."]),
+	("This is a sentence.", False, ["This", "is", "a", "sentence."]),
+])
 
-    tokens = tokenize(sentence)
+def test_tokenize_returns_expected_list(input,lower,expected):
+    
+    tokens = tokenize(input, lower=lower)
 
-    assert tokens == expected_tokens
+    assert tokens == expected
