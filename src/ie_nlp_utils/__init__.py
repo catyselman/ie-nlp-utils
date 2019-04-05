@@ -1,1 +1,2 @@
-print("Hello, world!")
+def tokenize(sentence):
+	return sentence.split()
